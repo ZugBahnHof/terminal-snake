@@ -6,6 +6,9 @@ authors = ["Julian Leucker <leuckerj@gmail.com>"]
 packages = [
     { include = "*.py" },
 ]
+readme = "README.md"
+repository = "https://github.com/ZugBahnHof/terminal-snake"
+keywords = ["game", "commandline", "terminal", "utf-8", "emoji"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
