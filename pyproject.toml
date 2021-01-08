@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "snake"
+name = "terminal-snake"
 version = "0.1.0"
 description = ""
 authors = ["Julian Leucker <leuckerj@gmail.com>"]
