@@ -30,7 +30,7 @@ class Theme:
     character_separator: str = "\t"
 
 
-DefaultTheme = Theme()
-EasyTheme = Theme(tail_end="🔲", character_separator="",
-                  tail={"rl": "🔲", "lr": "🔲", "ud": "🔲", "du": "🔲", "rd": "🔲", "dr": "🔲", "ru": "🔲", "ur": "🔲",
-                        "ld": "🔲", "dl": "🔲", "lu": "🔲", "ul": "🔲", })
+LineTheme = Theme()
+DefaultTheme = Theme(tail_end="🔲", character_separator="",
+                     tail={"rl": "🔲", "lr": "🔲", "ud": "🔲", "du": "🔲", "rd": "🔲", "dr": "🔲",
+                           "ru": "🔲", "ur": "🔲", "ld": "🔲", "dl": "🔲", "lu": "🔲", "ul": "🔲", })
