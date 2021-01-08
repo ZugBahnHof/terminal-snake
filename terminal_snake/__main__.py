@@ -1,14 +1,14 @@
 from .game import Game
 
 KEYBINDINGS = {
-        "w": 0,
-        "a": 3,
-        "s": 2,
-        "d": 1,
-    }
+    "w": 0,
+    "a": 3,
+    "s": 2,
+    "d": 1,
+}
 
 
-def main(game):
+def main(game: Game):
     game.set_apple()
     while True:
         game.draw_field()
@@ -30,6 +30,5 @@ def main(game):
 
 
 if __name__ == '__main__':
-    game = Game(5)
-    main(game)
-
+    g = Game(5)
+    main(g)
