@@ -3,9 +3,12 @@ name = "terminal-snake"
 version = "0.1.0"
 description = ""
 authors = ["Julian Leucker <leuckerj@gmail.com>"]
+packages = [
+    { include = "*.py" },
+]
 
 [tool.poetry.dependencies]
-python = "^3.8.6"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 
