@@ -20,8 +20,9 @@ class Game:
         try:
             with open("scores.json") as f:
                 scores = json.loads(f.read())
+                self.scores = scores
+
                 if str(self.field_size) in scores.keys():
-                    self.scores = scores
                     self.highscore = scores[str(self.field_size)]
                 else:
                     self.highscore = 0
