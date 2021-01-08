@@ -4,7 +4,7 @@ version = "0.1.1"
 description = ""
 authors = ["Julian Leucker <leuckerj@gmail.com>"]
 packages = [
-    { include = "terminal-snake" },
+    { include = "terminal_snake" },
 ]
 readme = "README.md"
 repository = "https://github.com/ZugBahnHof/terminal-snake"

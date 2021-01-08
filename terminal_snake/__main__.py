@@ -1,4 +1,4 @@
-from game import Game
+from .game import Game
 
 KEYBINDINGS = {
         "w": 0,
