@@ -4,7 +4,7 @@ import json
 
 class Game:
     def __init__(self, field_size):
-        self.snake = [(field_size // 2, field_size // 2)]  # field starts at 1; (1, 1) is the top left corner
+        self.snake = [(field_size // 2 + 1, field_size // 2 + 1)]  # field starts at 1; (1, 1) is the top left corner
         self.field_size = field_size
         self.orientation = 0  # 0 = Up, 1 = Right, 2 = Down, 3 = Left
         self.apples = []
