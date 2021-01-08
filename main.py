@@ -25,6 +25,7 @@ def main(game):
             print("You won!")
 
         game.max_apples = max((1, game.score // 5))
+    game.end_game()
     print(f"Score: {game.score}")
 
 

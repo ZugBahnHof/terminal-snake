@@ -1,4 +1,5 @@
 from random import randint
+import json
 
 
 class Game:
@@ -16,6 +17,17 @@ class Game:
             2: (0, 1),
             3: (-1, 0),
         }
+        try:
+            with open("scores.json") as f:
+                scores = json.loads(f.read())
+                if str(self.field_size) in scores.keys():
+                    self.scores = scores
+                    self.highscore = scores[str(self.field_size)]
+                else:
+                    self.highscore = 0
+        except (json.decoder.JSONDecodeError, FileNotFoundError) as e:
+            self.highscore = 0
+            self.scores = {}
 
     def set_apple(self):
         if self.max_score > len(self.apples) + self.score:
@@ -78,4 +90,12 @@ class Game:
 
     def add_another_apple(self):
         self.max_apples += 1
+
+    def end_game(self):
+        if self.score > self.highscore:
+            with open("scores.json", "w") as f:
+                self.scores[str(self.field_size)] = self.score
+                f.write(json.dumps(self.scores))
+
+
 
