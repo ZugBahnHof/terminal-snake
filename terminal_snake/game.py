@@ -64,10 +64,8 @@ class Game:
             # should we delete the last piece?
             if next_field in self.apples:
                 self.apples.pop(self.apples.index(next_field))
-                print(self.max_apples - len(self.apples))
 
                 for i in range(self.max_apples - len(self.apples)):
-                    print(i)
                     self.set_apple()
             else:
                 self.snake.pop(0)
@@ -129,6 +127,7 @@ class Game:
 
     def end_game(self):
         if self.score > self.highscore:
+            self.highscore = self.score
             with open("scores.json", "w") as f:
                 self.scores[str(self.field_size)] = self.score
                 f.write(json.dumps(self.scores))

@@ -23,12 +23,18 @@ def main(game: Game):
 
         if game.score == game.max_score:
             print("You won!")
+            break
 
         game.max_apples = max((1, game.score // 5))
     game.end_game()
-    print(f"Score: {game.score}")
+    print(f"Score: {game.score} | Highscore: {game.highscore}")
 
 
 if __name__ == '__main__':
-    g = Game(5)
+    size = input("Game size: ")
+    try:
+        size = int(size)
+    except ValueError:
+        size = 5
+    g = Game(size)
     main(g)
