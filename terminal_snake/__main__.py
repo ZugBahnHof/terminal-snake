@@ -10,10 +10,24 @@ KEYBINDINGS = {
 
 def main(game: Game):
     game.set_apple()
+    first = True
     while True:
+        if not first:
+            print("\033[F" * (game.field_size + 4) + "\b")
+        else:
+            first = False
         game.draw_field()
-        while (go := input("> ").lower()) not in ["w", "a", "s", "d"]:
-            print(":(")
+        lines = 1
+        while (go := input("> ").lower()) not in ["w", "a", "s", "d", "exit"]:
+            print("\033[F" * (lines + 1) + "\b")
+            print("Please type 'w', 'a', 's' or 'd'! To exit the game, type 'exit'")
+            lines = 2
+
+        print(("\033[F\b" + " " * 30) * lines)
+
+        if go == "exit":
+            print("Game aborted.")
+            break
 
         game.orientation = KEYBINDINGS[go]
 
@@ -36,5 +50,7 @@ if __name__ == '__main__':
         size = int(size)
     except ValueError:
         size = 5
+
+    print("\033[F\033[F\b" + " " * 30 + "\b")
     g = Game(size)
     main(g)
