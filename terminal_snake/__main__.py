@@ -1,4 +1,9 @@
+import argparse
+from curses import wrapper
+import curses
+
 from .game import Game
+from .tui import TUI
 
 KEYBINDINGS = {
     "w": 0,
@@ -8,7 +13,7 @@ KEYBINDINGS = {
 }
 
 
-def main(game: Game):
+def play(game: Game):
     game.set_apple()
     first = True
     while True:
@@ -44,7 +49,7 @@ def main(game: Game):
     print(f"Score: {game.score} | Highscore: {game.highscore}")
 
 
-if __name__ == '__main__':
+def main(stdscr):
     size = input("Game size: ")
     try:
         size = int(size)
@@ -53,4 +58,17 @@ if __name__ == '__main__':
 
     print("\033[F\033[F\b" + " " * 30 + "\b")
     g = Game(size)
-    main(g)
+    play(g)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Command line snake game')
+    parser.add_argument('field_size', type=int, default=5, help='Size of your field')
+    parser.add_argument('-c', '--continuous', action='store_true', help='Play this game continuously?')
+
+    args = parser.parse_args()
+    print(f"Generating field with size {args.field_size}")
+
+    tui = wrapper(TUI, args.field_size, args.continuous)
+    for msg in tui.msgs:
+        print(msg)
