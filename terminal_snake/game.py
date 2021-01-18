@@ -6,7 +6,7 @@ from .theme import Theme, DefaultTheme
 
 
 class Game:
-    def __init__(self, field_size: int = 5, theme: Theme = DefaultTheme):
+    def __init__(self, field_size: int = 5, theme: Theme = DefaultTheme, score_key: Optional[str] = None):
         self.snake = [(field_size // 2 + 1, field_size // 2 + 1)]  # field starts at 1; (1, 1) is the top left corner
         self.field_size = field_size
         self.orientation = 0  # 0 = Up, 1 = Right, 2 = Down, 3 = Left
@@ -22,15 +22,15 @@ class Game:
             2: (0, 1),
             3: (-1, 0),
         }
+
+        self.score_key = score_key if score_key else str(self.field_size)
+
         try:
             with open("scores.json") as f:
                 scores = json.loads(f.read())
                 self.scores = scores
 
-                if str(self.field_size) in scores.keys():
-                    self.highscore = scores[str(self.field_size)]
-                else:
-                    self.highscore = 0
+                self.highscore = scores.get(self.score_key, 0)
         except (json.decoder.JSONDecodeError, FileNotFoundError) as e:
             self.highscore = 0
             self.scores = {}
@@ -133,5 +133,5 @@ class Game:
         if self.score > self.highscore:
             self.highscore = self.score
             with open("scores.json", "w") as f:
-                self.scores[str(self.field_size)] = self.score
+                self.scores[self.score_key] = self.score
                 f.write(json.dumps(self.scores))

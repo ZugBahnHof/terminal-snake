@@ -19,6 +19,8 @@ class TUI:
     }
 
     def __init__(self, stdscr, field_size, continous_mode=False):
+        self.mode = continous_mode
+
         locale.setlocale(locale.LC_ALL, '')
         self.stdscr = stdscr
         self.stdscr.border()
@@ -48,7 +50,6 @@ class TUI:
         finally:
             self.stdscr.refresh()
 
-        self.mode = continous_mode
         self.play()
 
     @staticmethod
@@ -56,7 +57,7 @@ class TUI:
         return text.encode("utf-8", "replace")
 
     def prepare_game(self, field_size):
-        game = Game(field_size)
+        game = Game(field_size, score_key=f"c{field_size}" if self.mode else None)
         game.set_apple()
         return game
 
