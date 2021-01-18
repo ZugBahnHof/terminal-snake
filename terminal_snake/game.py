@@ -1,5 +1,6 @@
 from random import randint
 import json
+from typing import Optional, List
 
 from .theme import Theme, DefaultTheme
 
@@ -74,7 +75,7 @@ class Game:
         else:
             return False
 
-    def draw_field(self):
+    def draw_field(self, print_=True) -> Optional[List[List[str]]]:
         entire_field = [[self.theme.border_piece] * (self.field_size + 2)]
         for y in range(1, self.field_size + 1):
             row = [self.theme.border_piece]
@@ -113,10 +114,13 @@ class Game:
 
                 entire_field[y][x] = self.theme.tail[icon]
 
-        for row in entire_field:
-            for item in row:
-                print(item, end=self.theme.character_separator)
-            print()
+        if print_:
+            for row in entire_field:
+                for item in row:
+                    print(item, end=self.theme.character_separator)
+                print()
+        else:
+            return entire_field
 
     @property
     def score(self):
