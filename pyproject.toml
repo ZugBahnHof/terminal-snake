@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "terminal-snake"
-version = "0.6.0"
+version = "1.0.0-alpha"
 description = ""
 authors = ["Julian Leucker <leuckerj@gmail.com>"]
 packages = [
